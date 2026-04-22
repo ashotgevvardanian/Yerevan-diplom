@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="hy">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Երևանի հիմնական գծագիր</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 20px;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #fff;
+        }
+
+        /* Уменьшенный контейнер */
+        .banner-card {
+            background-color: #e0e0e0;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            max-width: 850px; /* Ограничили ширину */
+            margin: 0 auto;
+            padding: 25px 40px; /* Уменьшили внутренние отступы */
+            border-radius: 4px; /* Легкое закругление углов */
+        }
+
+        .banner-text {
+            flex: 1.5;
+            padding-right: 20px;
+        }
+
+        .banner-text h1 {
+            font-size: 26px; /* Уменьшили заголовок */
+            margin: 0 0 10px 0;
+            color: #000;
+            line-height: 1.2;
+        }
+
+        .banner-text p {
+            font-size: 18px; /* Уменьшили подзаголовок */
+            color: #444;
+            margin: 0 0 25px 0;
+        }
+
+        /* Ссылка в стиле браузера */
+        .banner-text a {
+            font-size: 16px;
+            color: #a52a2a;
+            text-decoration: underline;
+        }
+
+        .banner-image {
+            flex: 1;
+            display: flex;
+            justify-content: flex-end;
+        }
+
+        .banner-image img {
+            max-width: 280px; /* Уменьшили размер картинки */
+            height: auto;
+            display: block;
+        }
+
+        /* Адаптивность для узких экранов */
+        @media (max-width: 600px) {
+            .banner-card {
+                flex-direction: column;
+                text-align: center;
+                padding: 20px;
+            }
+            .banner-text {
+                padding-right: 0;
+                margin-bottom: 20px;
+            }
+            .banner-image {
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    
+
+    <div class="banner-card">
+        <div class="banner-text">
+            <h1>GIS հարթակներ</h1>
+            <p>Երևանի քարտեզագրություն</p>
+            <a href="https://gis.yerevan.am" target="_blank">https://gis.yerevan.am</a>
+        </div>
+
+        <div class="banner-image">
+            <img src="images/himnakan.png" alt="Երևանի գծագիր">
+        </div>
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ get_val(building, 'name') }} - {{ t('welcome_title') }}{% endblock %}
+
+{% block content %}
+<div class="fade-in">
+    <a href="{{ url_for('buildings') }}" style="color: var(--text-secondary); text-decoration: none; font-size: 0.9rem; font-weight: 500;">&larr; {{ t('back_to_buildings') }}</a>
+    <h1 style="font-size: 4rem; font-weight: 800; margin: 1.5rem 0; color: var(--accent-color);">{{ get_val(building, 'name') }}</h1>
+</div>
+
+<div class="detail-header fade-in" style="animation-delay: 0.1s;">
+    <div class="header-text">
+        <p style="color: var(--text-secondary); font-size: 1.2rem; margin-bottom: 2rem;">{{ get_val(building, 'desc') }}</p>
+        
+        <div style="background: var(--surface-solid); padding: 2rem; border-radius: 20px; box-shadow: var(--card-shadow);">
+            <h3 style="margin-bottom: 1.5rem; color: var(--accent-color);">{{ t('view_3d') }}</h3>
+            <div id="three-container" class="glass">
+                <!-- 3D model will be loaded here -->
+            </div>
+            <p style="margin-top: 1.5rem; font-size: 0.9rem; color: var(--text-secondary); font-style: italic;">
+                {{ t('view_3d_desc') }}
+            </p>
+        </div>
+    </div>
+    
+    <div class="header-image">
+        <img src="{{ url_for('static', filename=building.image_url) }}" alt="{{ get_val(building, 'name') }}" class="detail-img-main" style="height: auto; max-height: 600px;">
+        <div style="margin-top: 2.5rem;">
+            <h4 style="margin-bottom: 1rem; color: var(--accent-color);">Լուսանկար / Photo / Фото</h4>
+            <div style="width: 100%;">
+                <img src="{{ url_for('static', filename=building.image_url) }}" style="width: 100%; border-radius: 24px; height: 300px; object-fit: cover; box-shadow: var(--card-shadow);">
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<!-- Three.js Library -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/GLTFLoader.js"></script>
+<script src="{{ url_for('static', filename='js/model.js') }}"></script>
+<script>
+    // Initialize 3D view for this building
+    initModel('{{ building.model_id }}');
+</script>
+{% endblock %}

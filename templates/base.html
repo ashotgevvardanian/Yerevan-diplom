@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="{{ session.get('lang', 'hy') }}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Երևան - {{ t('welcome_title') }}{% endblock %}</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Main Styles -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    {% block extra_css %}{% endblock %}
+</head>
+<body>
+    <div id="preloader">
+        <div class="preloader-content">
+            <img src="{{ url_for('static', filename='images/Coat of arm.png') }}" alt="Երևան" class="preloader-logo">
+            <div class="preloader-progress"></div>
+        </div>
+    </div>
+
+    <header class="glass" id="main-header">
+        <a href="{{ url_for('index') }}" class="logo-link" style="text-decoration: none;">
+            <div class="logo-container">
+                <img src="{{ url_for('static', filename='images/Coat of arm.png') }}" alt="Երևան Գերբ" class="header-logo">
+                <div class="logo-text">ԵՐԵՎԱՆ</div>
+            </div>
+        </a>
+        <nav>
+            <ul class="nav-links">
+                <li><a href="{{ url_for('index') }}">{{ t('home') }}</a></li>
+                <li><a href="{{ url_for('districts') }}">{{ t('districts') }}</a></li>
+                <li><a href="{{ url_for('buildings') }}">{{ t('buildings') }}</a></li>
+            </ul>
+        </nav>
+        <div class="header-actions" style="display: flex; align-items: center; gap: 1.5rem;">
+            <div class="lang-switcher">
+                <button class="lang-btn">{{ current_lang|upper }}</button>
+                <div class="lang-dropdown">
+                    <a href="{{ url_for('set_lang', lang='hy') }}">HY</a>
+                    <a href="{{ url_for('set_lang', lang='ru') }}">RU</a>
+                    <a href="{{ url_for('set_lang', lang='en') }}">EN</a>
+                </div>
+            </div>
+            <button id="theme-toggle" title="Թեմա">🌓</button>
+        </div>
+    </header>
+
+    <main class="container">
+        {% block content %}{% endblock %}
+    </main>
+
+    <footer>
+        <p>&copy; 2026 «Հայաստանի Մայրաքաղաք» - {{ t('footer_rights') }}</p>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+    {% block extra_js %}{% endblock %}
+</body>
+</html>

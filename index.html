@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="hy">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Երևանի Ճարտարապետություն</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header>
+    <!-- Герб -->
+    <div class="logo">
+        <a href="index.html"><img src="images/Coat of arm.png" alt="Գերբ Երևան"></a>
+    </div>
+
+    <h1>Երևան</h1>
+
+    <!-- Меню -->
+    <nav>
+        <ul>
+        
+            <li><a href="buildings.html" target="_blank">Ճարտարապետություն</a></li>
+            <li><a href="districts.html" target="_blank">Վարչական շրջաններ</a></li>
+            <li><a href="map.html" target="_blank">Քարտեզ</a></li>
+        </ul>
+    </nav>
+</header>
+
+<main>
+    <!-- HERO секция -->
+    <section id="hero">
+        
+      
+    </section>
+
+    
+</main>
+
+<!-- JS для вычисления возраста города -->
+<script>
+    // Ереван основан в 782 году до н.э.
+    const yerevanFounded = -782; // отрицательное число для до н.э.
+    const currentYear = new Date().getFullYear();
+    
+    // вычисляем возраст
+    const age = currentYear - yerevanFounded;
+    
+    document.getElementById('yerevan-age').textContent = age;
+</script>
+</body>
+</html>

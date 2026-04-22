@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ t('home') }} - {{ t('welcome_title') }}{% endblock %}
+
+{% block content %}
+<section class="hero fade-in" style="background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('{{ url_for('static', filename='images/om.jpg') }}');">
+    <div class="hero-content">
+        <h1>{{ t('welcome_title') }}</h1>
+        <p style="color: white; font-weight: 500;">{{ t('welcome_subtitle') }}</p>
+        <div style="margin-top: 2.5rem;">
+            <a href="{{ url_for('districts') }}"><button style="padding: 1rem 2rem; font-size: 1rem;">{{ t('explore') }}</button></a>
+            <a href="{{ url_for('buildings') }}" style="margin-left: 1.5rem;"><button style="padding: 1rem 2rem; font-size: 1rem; background: rgba(255,255,255,0.2); color: white; border: 2px solid white; backdrop-filter: blur(10px);">{{ t('see_buildings') }}</button></a>
+        </div>
+    </div>
+</section>
+
+<section class="fade-in" style="animation-delay: 0.2s; margin-top: 5rem;">
+    <div style="display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 2rem;">
+        <div>
+            <h2 style="font-size: 2.5rem; font-weight: 800; color: var(--text-primary);">{{ t('adm_districts') }}</h2>
+            <p style="color: var(--text-secondary);">{{ t('adm_districts_sub') }}</p>
+        </div>
+        <a href="{{ url_for('districts') }}" style="color: var(--accent-color); font-weight: 700; text-decoration: none;">{{ t('see_all') }} &rarr;</a>
+    </div>
+    <div class="grid">
+        {% for district in districts %}
+        <div class="card" onclick="location.href='{{ url_for('district_detail', name=district.name_key) }}'">
+            <div class="card-img-wrapper">
+                <img src="{{ url_for('static', filename=district.image_url) }}" alt="{{ get_val(district, 'name') }}" class="card-img">
+                <div class="card-tag">{{ t('districts') }}</div>
+            </div>
+            <div class="card-content">
+                <h3 class="card-title">{{ get_val(district, 'name') }}</h3>
+                <p style="color: var(--text-secondary); font-size: 0.95rem; line-height: 1.5;">{{ get_val(district, 'desc')[:100] }}...</p>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</section>
+
+<section class="fade-in" style="animation-delay: 0.4s; margin-top: 6rem; margin-bottom: 4rem;">
+    <div style="display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 2rem;">
+        <div>
+            <h2 style="font-size: 2.5rem; font-weight: 800; color: var(--text-primary);">{{ t('famous_buildings') }}</h2>
+            <p style="color: var(--text-secondary);">{{ t('famous_buildings_sub') }}</p>
+        </div>
+        <a href="{{ url_for('buildings') }}" style="color: var(--accent-color); font-weight: 700; text-decoration: none;">{{ t('see_all') }} &rarr;</a>
+    </div>
+    <div class="grid">
+        {% for building in buildings %}
+        <div class="card" onclick="location.href='{{ url_for('building_detail', id=building.id) }}'">
+            <div class="card-img-wrapper">
+                <img src="{{ url_for('static', filename=building.image_url) }}" alt="{{ get_val(building, 'name') }}" class="card-img">
+                <div class="card-tag">{{ t('buildings') }}</div>
+            </div>
+            <div class="card-content">
+                <h3 class="card-title">{{ get_val(building, 'name') }}</h3>
+                <p style="color: var(--text-secondary); font-size: 0.95rem; line-height: 1.5;">{{ get_val(building, 'desc')[:100] }}...</p>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</section>
+{% endblock %}

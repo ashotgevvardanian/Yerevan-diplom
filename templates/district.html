@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ get_val(district, 'name') }} - {{ t('welcome_title') }}{% endblock %}
+
+{% block content %}
+<div class="fade-in">
+    <a href="{{ url_for('districts') }}" style="color: var(--text-secondary); text-decoration: none; font-size: 0.9rem; font-weight: 500;">&larr; {{ t('back_to_districts') }}</a>
+    <h1 style="font-size: 4rem; font-weight: 800; margin: 1.5rem 0; color: var(--accent-color);">{{ get_val(district, 'name') }}</h1>
+</div>
+
+<div class="detail-header fade-in" style="animation-delay: 0.1s;">
+    <div class="header-text">
+        <p style="color: var(--text-secondary); font-size: 1.2rem; margin-bottom: 2rem;">{{ get_val(district, 'desc') }}</p>
+        
+        <div class="stats-grid">
+            <div class="stat-box">
+                <span class="stat-label">{{ t('area') }}</span>
+                <span class="stat-value">{{ district.area }}</span>
+            </div>
+            <div class="stat-box">
+                <span class="stat-label">{{ t('population') }}</span>
+                <span class="stat-value">{{ district.population }}</span>
+            </div>
+        </div>
+
+        <div style="margin-top: 3rem;">
+            <h3 style="margin-bottom: 1rem; color: var(--accent-color);">{{ t('features') }}</h3>
+            <p style="font-size: 1.1rem; line-height: 1.8;">{{ get_val(district, 'features') }}</p>
+        </div>
+    </div>
+    
+    <div class="header-image">
+        <img src="{{ url_for('static', filename=district.image_url) }}" alt="{{ get_val(district, 'name') }}" class="detail-img-main">
+    </div>
+</div>
+{% endblock %}

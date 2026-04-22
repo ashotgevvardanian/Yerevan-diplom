@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ t('buildings') }} - {{ t('welcome_title') }}{% endblock %}
+
+{% block content %}
+<header class="section-header" style="margin-bottom: 4rem; text-align: center; padding-top: 2rem;">
+    <h1 style="font-size: 3.5rem; font-weight: 800; margin-bottom: 1rem; color: var(--accent-color);">{{ t('famous_buildings') }}</h1>
+    <p style="color: var(--text-secondary); font-size: 1.2rem; max-width: 700px; margin: 0 auto;">{{ t('famous_buildings_sub') }}</p>
+</header>
+
+<div class="grid">
+    {% for building in buildings %}
+    <div class="card fade-in" style="animation-delay: {{ loop.index0 * 0.1 }}s;" onclick="location.href='{{ url_for('building_detail', id=building.id) }}'">
+        <div class="card-img-wrapper">
+            <img src="{{ url_for('static', filename=building.image_url) }}" alt="{{ get_val(building, 'name') }}" class="card-img">
+            <div class="card-tag">{{ t('buildings') }}</div>
+        </div>
+        <div class="card-content">
+            <h3 class="card-title">{{ get_val(building, 'name') }}</h3>
+            <p style="color: var(--text-secondary); font-size: 1rem; flex-grow: 1; margin-bottom: 1.5rem;">
+                {{ get_val(building, 'desc')[:120] }}...
+            </p>
+            <div style="display: flex; align-items: center; color: var(--accent-color); font-weight: 700; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px;">
+                {{ t('view_3d') }} <span style="margin-left: 8px;">&rarr;</span>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}
